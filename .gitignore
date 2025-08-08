@@ -131,7 +131,7 @@ env.bak/
 venv.bak/
 
 # Project specific
-backend/portfolio_data.json
+# backend/portfolio_data.json  # Temporarily allow this for deployment
 
 # Spyder project settings
 .spyderproject
