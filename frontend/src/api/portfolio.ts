@@ -38,7 +38,7 @@ export type Summary = {
   riskLevel: string;
 };
 
-const baseUrl = 'http://localhost:8000';
+const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 async function getJSON<T>(path: string): Promise<T> {
   const res = await fetch(`${baseUrl}${path}`);

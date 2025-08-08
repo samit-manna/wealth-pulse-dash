@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import uvicorn
+import os
 
 from .models import Holding, Allocation, Performance, Summary
 from .data_service import portfolio_service
@@ -13,10 +14,13 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Configure CORS origins
+allowed_origins = os.getenv("CORS_ORIGINS", "*").split(",")
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify your frontend domain
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -69,4 +73,5 @@ async def reload_data():
         raise HTTPException(status_code=500, detail=f"Failed to reload data: {str(e)}")
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
