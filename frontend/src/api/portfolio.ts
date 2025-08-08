@@ -1,4 +1,4 @@
-// Types and API helpers for portfolio endpoints with automatic fallback to local mock data when Supabase is not configured.
+// Types and API helpers for portfolio endpoints using Python FastAPI backend.
 export type Holding = {
   symbol: string;
   name: string;
@@ -38,9 +38,7 @@ export type Summary = {
   riskLevel: string;
 };
 
-const base: string | undefined = (import.meta as any).env?.VITE_SUPABASE_URL;
-const hasSupabase = typeof base === 'string' && base.length > 0;
-const baseUrl = hasSupabase ? `${base}/functions/v1` : 'http://localhost:8000';
+const baseUrl = 'http://localhost:8000';
 
 async function getJSON<T>(path: string): Promise<T> {
   const res = await fetch(`${baseUrl}${path}`);
