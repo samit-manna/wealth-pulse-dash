@@ -61,6 +61,7 @@ This script will:
 - `backend/railway.toml` - Railway deployment configuration
 - `backend/runtime.txt` - Python version specification
 - `backend/requirements.txt` - Python dependencies
+- `backend/data/portfolio_data.json` - Portfolio data from Excel import
 
 ## Frontend Deployment (Vercel)
 
