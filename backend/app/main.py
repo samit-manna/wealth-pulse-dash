@@ -5,7 +5,7 @@ import uvicorn
 import os
 
 from .models import Holding, Allocation, Performance, Summary
-from .data_service_new import portfolio_service
+from .data_service import portfolio_service
 
 # Create FastAPI app
 app = FastAPI(
